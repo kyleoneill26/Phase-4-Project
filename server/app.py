@@ -7,8 +7,12 @@ from config import app, db, api
 from models import Customer, Movie, Rental, Review
 
 
+class Home(Resource):
+    def get(self):
+        return make_response("API is running", 200)
 
-class Customer(Resource):
+api.add_resource(Home, '/')
+class Customers(Resource):
     def get(self):
         customers = Customer.query.all()
         customers_dict = [customer.to_dict() for customer in customers]
@@ -32,7 +36,7 @@ class Customer(Resource):
         customer_dict = new_customer.to_dict()
         return make_response(customer_dict, 200)
 
-api.add_resource( Customer, '/customer' )
+api.add_resource( Customers, '/customers' )
 
 class CustomerById(Resource):
 
@@ -56,31 +60,31 @@ class CustomerById(Resource):
         db.session.commit()
         return make_response( { 'msg' : 'sick delete you just did there' } )
 
-api.add_resource( CustomerById, '/customer/<int:id>')
+api.add_resource( CustomerById, '/customers/<int:id>')
 
-class Movie(Resource):
-    pass
-api.add_resource( Movie, '/movie' )
+# class Movies(Resource):
+#     pass
+# api.add_resource( Movies, '/movies' )
 
-class MovieById(Resource):
-    pass
-api.add_resource( Movie, '/movie/<int:id>' )
+# class MovieById(Resource):
+#     pass
+# api.add_resource( Movies, '/movies/<int:id>' )
 
-class Rental(Resource):
-    pass
-api.add_resource( Rental, '/rental' )
+# class Rentals(Resource):
+#     pass
+# api.add_resource( Rentals, '/rentals' )
 
-class RentalById(Resource):
-    pass
-api.add_resource( Rental, '/rental/<int:id>' )
+# class RentalById(Resource):
+#     pass
+# api.add_resource( Rentals, '/rentals/<int:id>' )
 
-class Review(Resource):
-    pass
-api.add_resource( Review, '/review' )
+# class Reviews(Resource):
+#     pass
+# api.add_resource( Reviews, '/reviews' )
 
-class ReviewById(Resource):
-    pass
-api.add_resource( Review, '/review/<int:id>' )
+# class ReviewById(Resource):
+#     pass
+# api.add_resource( Reviews, '/reviews/<int:id>' )
 
 
 if __name__ == '__main__':
