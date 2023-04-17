@@ -27,7 +27,7 @@ if __name__ == '__main__':
         lname="Henry",
         age="44",
         phone="5132279750",
-        address="6 Highland Ave, Maplewood, NJ 07040",
+        address="Highland Ave, Maplewood, NJ 07040",
         )
         
         kyle_oneill = Customer(

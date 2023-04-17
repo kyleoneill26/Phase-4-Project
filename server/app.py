@@ -38,7 +38,7 @@ api.add_resource( Customers, '/customers' )
 
 class CustomerById(Resource):
 
-    def get(self):
+    def get(self, id):
         customer_by_id = Customer.query.filter(Customer.id == id).first()
         customer_by_id_dict = customer_by_id.to_dict()
         if customer_by_id == None:
