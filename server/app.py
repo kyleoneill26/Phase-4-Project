@@ -30,12 +30,32 @@ class Customer(Resource):
         db.session.add( new_customer )
         db.session.commit()
         customer_dict = new_customer.to_dict()
-        return make_response(customer_dict, 201)
+        return make_response(customer_dict, 200)
 
 api.add_resource( Customer, '/customer' )
 
 class CustomerById(Resource):
-    pass
+
+    def patch(self, id):
+        customer_by_id = Customer.query.filter(Customer.id == id).first()
+        if customer_by_id == None:
+            return make_response( { 'error' : '404: Customer Not Found' } )
+        for attr in request.get_json():
+            setattr(customer_by_id, attr, request.get_json()[attr])
+        db.session.add(customer_by_id)
+        db.session.commit()
+        customer_by_id_dict = customer_by_id.to_dict()
+        return make_response( customer_by_id_dict, 201 )
+
+
+    def delete(self, id):
+        customer_by_id = Customer.query.filter(Customer.id == id).first()
+        if customer_by_id is None:
+            return make_response( { 'error' : '404: Customer Not Found' } )
+        db.session.delete(customer_by_id)
+        db.session.commit()
+        return make_response( { 'msg' : 'sick delete you just did there' } )
+
 api.add_resource( CustomerById, '/customer/<int:id>')
 
 class Movie(Resource):
