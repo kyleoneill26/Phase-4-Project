@@ -67,9 +67,14 @@ class CustomerById(Resource):
 
 api.add_resource( CustomerById, '/customers/<int:id>')
 
-# class Movies(Resource):
-#     pass
-# api.add_resource( Movies, '/movies' )
+class Movies(Resource):
+    def get(self):
+        movies = Movie.query.all()
+        movies_dict = [movie.to_dict() for movie in movies]
+        if movies == None:
+            return make_response( { 'error' : '404: Movies Not Found' } )
+        return make_response( movies_dict, 200 )
+api.add_resource( Movies, '/movies' )
 
 # class MovieById(Resource):
 #     pass
