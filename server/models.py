@@ -16,8 +16,8 @@ class Customer(db.Model, SerializerMixin):
     age = db.Column(db.Integer)
     phone = db.Column(db.String(255))
     address = db.Column(db.String(255))
-    rentals = db.relationship('rental', backref='customer')
-    reviews = db.relationship('review', backref='customer')
+    rentals = db.relationship('Rental', backref='customer')
+    reviews = db.relationship('Review', backref='customer')
     
 class Movie(db.Model, SerializerMixin):
     __tablename__ = 'movies'
@@ -27,10 +27,11 @@ class Movie(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255))
     genre = db.Column(db.String(255))
+    year = db.Column(db.String(100))
     rating = db.Column(db.String(255))
     in_stock = db.Column(db.Boolean)
-    rentals = db.relationship('rental', backref='movie')
-    reviews = db.relationship('review', backref='movie')
+    rentals = db.relationship('Rental', backref='movie')
+    reviews = db.relationship('Review', backref='movie')
 
 class Rental(db.Model, SerializerMixin):
     __tablename__ = 'rentals'
