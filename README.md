@@ -10,7 +10,7 @@
 ## Introduction
 
 Fork and clone this lesson for a template for your full-stack application. Take
-a look at the directory structure before we begin:
+a look at the directory structure before we begin:ddddd
 
 ```console
 $ tree -L 2
