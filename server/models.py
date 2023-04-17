@@ -51,4 +51,4 @@ class Review(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'))
     movie_id = db.Column(db.Integer, db.ForeignKey('movies.id'))
-    rating = db.Column(db.Integer)
+    review = db.Column(db.Integer)
