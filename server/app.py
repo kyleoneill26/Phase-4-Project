@@ -5,8 +5,6 @@ from flask_migrate import Migrate
 from flask_restful import Api, Resource
 from config import app, db, api
 from models import Customer, Movie, Rental, Review
-
-
 class Home(Resource):
     def get(self):
         return make_response("API is running", 200)
