@@ -40,6 +40,13 @@ api.add_resource( Customers, '/customers' )
 
 class CustomerById(Resource):
 
+    def get(self):
+        customer_by_id = Customer.query.filter(Customer.id == id).first()
+        customer_by_id_dict = customer_by_id.to_dict()
+        if customer_by_id == None:
+            return make_response( { 'error' : '404: Customer Not Found' } )
+        return make_response( customer_by_id_dict, 200 )
+
     def patch(self, id):
         customer_by_id = Customer.query.filter(Customer.id == id).first()
         if customer_by_id == None:
