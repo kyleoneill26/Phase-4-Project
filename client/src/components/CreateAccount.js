@@ -45,7 +45,7 @@ function CreateAccount() {
                 password: newPassword
             })
         };
-        axios.post('http://127.0.0.1:5555/customers', requestOptions)
+        fetch('/customers', requestOptions)
             //.then( addCustomerToState )
             .then (e.target.reset())
     }
