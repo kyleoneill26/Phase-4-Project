@@ -27,6 +27,7 @@ class Customers(Resource):
         new_customer = Customer(
             fname = data['fname'],
             lname = data['lname'],
+            password = data['password'],
             age = data['age'],
             phone = data['phone'],
             address = data['address'],
