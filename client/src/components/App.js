@@ -5,6 +5,7 @@ import NavBar from "./NavBar";
 import Home from "./Home";
 import AboutMe from "./AboutMe";
 import AccountPage from "./AccountPage";
+import CreateAccount from "./CreateAccount";
 import { Router } from "react-router-dom/cjs/react-router-dom.min";
 
 
@@ -113,6 +114,9 @@ function App() {
                     </Route>
                     <Route path='/aboutme'>
                         <AboutMe className="App-header"/>
+                    </Route>
+                    <Route path='/register'>
+                        <CreateAccount className="App-header"/>
                     </Route>
                     <Route path='/'>
                         <Home className="App-header"/>
