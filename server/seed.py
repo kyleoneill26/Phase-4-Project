@@ -25,6 +25,7 @@ if __name__ == '__main__':
         scott_henry = Customer(
         fname="Scott",
         lname="Henry",
+        password="gottem",
         age="44",
         phone="5132279750",
         address="Highland Ave, Maplewood, NJ 07040",
@@ -33,6 +34,7 @@ if __name__ == '__main__':
         kyle_oneill = Customer(
         fname="Kyle",
         lname="Oneill",
+        password="sickpassword",
         age="25",
         phone="1234567890",
         address="123 Main St",
@@ -41,6 +43,7 @@ if __name__ == '__main__':
         jesse_hunter = Customer(
         fname="Jesse",
         lname="Hunter",
+        password="haha420",
         age="25",
         phone="1234567890",
         address="456 Main St",

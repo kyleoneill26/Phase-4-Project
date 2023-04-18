@@ -13,6 +13,7 @@ class Customer(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     fname = db.Column(db.String(255))
     lname = db.Column(db.String(255))
+    password = db.Column(db.String(255))
     age = db.Column(db.Integer)
     phone = db.Column(db.String(255))
     address = db.Column(db.String(255))
