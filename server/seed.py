@@ -49,6 +49,7 @@ if __name__ == '__main__':
         predator = Movie(
         title="Predator",
         genre="Sci-Fi",
+        image="https://upload.wikimedia.org/wikipedia/en/9/95/Predator_Movie.jpg",
         year="1987",
         rating="R",
         in_stock=False,
@@ -57,6 +58,7 @@ if __name__ == '__main__':
         terminator = Movie(
         title="The Terminator",
         genre="Sci-Fi",
+        image="https://upload.wikimedia.org/wikipedia/en/7/70/Terminator1984movieposter.jpg",
         year="1984",
         rating="R",
         in_stock=False,
@@ -65,6 +67,7 @@ if __name__ == '__main__':
         top_gun = Movie(
         title="Top Gun",
         genre="Action",
+        image="https://upload.wikimedia.org/wikipedia/en/4/46/Top_Gun_Movie.jpg",
         year="1986",
         rating="R",
         in_stock=False,
@@ -73,6 +76,7 @@ if __name__ == '__main__':
         the_color_of_money = Movie(
         title="The Color of Money",
         genre="Drama",
+        image="https://upload.wikimedia.org/wikipedia/en/a/a9/The_Color_Of_Money.jpg",
         year="1984",
         rating="R",
         in_stock=True,
