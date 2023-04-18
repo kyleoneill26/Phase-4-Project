@@ -100,7 +100,7 @@ class MovieById(Resource):
             return make_response( { 'error' : '404: Movie Not Found' } )
         return make_response( movie_by_id_dict, 200 )
     
-api.add_resource( Movies, '/movies/<int:id>' )
+api.add_resource( MovieById, '/movies/<int:id>' )
 
 class Rentals(Resource):
     def get(self):
@@ -132,7 +132,7 @@ class RentalById(Resource):
         if rental_by_id == None:
             return make_response( { 'error' : '404: Rental Not Found' } )
         return make_response( rental_by_id_dict, 200 )
-api.add_resource( Rentals, '/rentals/<int:id>' )
+api.add_resource( RentalById, '/rentals/<int:id>' )
 
 class Reviews(Resource):
     def get(self):
@@ -163,7 +163,7 @@ class ReviewById(Resource):
         if review_by_id == None:
             return make_response( { 'error' : '404: Review Not Found' } )
         return make_response( review_by_id_dict, 200 )
-api.add_resource( Reviews, '/reviews/<int:id>' )
+api.add_resource( ReviewById, '/reviews/<int:id>' )
 
 
 if __name__ == '__main__':

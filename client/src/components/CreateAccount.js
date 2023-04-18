@@ -11,6 +11,7 @@ function CreateAccount() {
                 <input type="text" email="email" placeholder="Email" />
                 <input type="text" phone="phone" placeholder="Phone" />
                 <input type="text" city="city" placeholder="City" />
+                <input type="text" city="age" placeholder="Age" />
                 <input type="text" password="password" placeholder="Password" />
                 <input type="submit" value="Create Account" />
             </form>
