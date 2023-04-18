@@ -28,7 +28,8 @@ if __name__ == '__main__':
         password="gottem",
         age="44",
         phone="5132279750",
-        address="Highland Ave, Maplewood, NJ 07040",
+        city="Maplewood",
+        email="scotthenry1@gmail.com",
         )
         
         kyle_oneill = Customer(
@@ -37,7 +38,8 @@ if __name__ == '__main__':
         password="sickpassword",
         age="25",
         phone="1234567890",
-        address="123 Main St",
+        city="Somewhere",
+        email="kyle@email.com",
         )
         
         jesse_hunter = Customer(
@@ -46,7 +48,8 @@ if __name__ == '__main__':
         password="haha420",
         age="25",
         phone="1234567890",
-        address="456 Main St",
+        city="Nowhere",
+        email="jesse@email.com",
         )
         
         predator = Movie(

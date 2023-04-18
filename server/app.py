@@ -30,7 +30,8 @@ class Customers(Resource):
             password = data['password'],
             age = data['age'],
             phone = data['phone'],
-            address = data['address'],
+            city = data['city'],
+            email = data['email'],
         )
         db.session.add( new_customer )
         db.session.commit()

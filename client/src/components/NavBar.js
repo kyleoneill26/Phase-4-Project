@@ -5,7 +5,7 @@ import {NavLink} from 'react-router-dom'
 
 export default function NavBar() {
     return(
-        <nav classname=''>
+        <nav className=''>
             <a href= "">we can put a logo of some sort here</a>
             <NavLink className='NavLink' exact to = '/'>Home</NavLink>
             <NavLink className="NavLink" to = "/movies">Movies</NavLink>
