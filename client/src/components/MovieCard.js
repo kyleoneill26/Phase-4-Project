@@ -1,11 +1,11 @@
 import React from "react";
 
-function Movie({movie}) {
+function MovieCard({movie}) {
 
   return (
       <div>{movie.title}</div>
     );
 }
 
-export default Movie;
+export default MovieCard;
 

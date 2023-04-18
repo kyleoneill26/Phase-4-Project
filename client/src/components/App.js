@@ -24,9 +24,6 @@ function App() {
     <Route exact path="/">
       <div>Homepage!</div>
       <br></br>
-      <div>Customers:</div>
-      <CustomerList customers={customers} />
-      <br></br>
       <div>Movies:</div>
       <MovieList movies={movies} />
     </Route>
