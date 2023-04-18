@@ -3,8 +3,10 @@ import { Switch, Route } from "react-router-dom";
 import MoviePage from "./MoviePage";
 import NavBar from "./NavBar";
 import Home from "./Home";
-
+import AboutMe from "./AboutMe";
+import AccountPage from "./AccountPage";
 import { Router } from "react-router-dom/cjs/react-router-dom.min";
+
 
 function App() {
 
@@ -32,9 +34,6 @@ function App() {
             <header>
                 <NavBar className="App-header"/>
                 <Switch>
-                    <Route path='/'>
-                        <Home className="App-header"/>
-                    </Route>
                     <Route path='/movies'>
                         <MoviePage className="App-header"/>
                     </Route>
@@ -43,6 +42,12 @@ function App() {
                     </Route>
                     <Route path='/aboutme'>
                         <AboutMe className="App-header"/>
+                    </Route>
+                    <Route path='/'>
+                        <Home className="App-header"/>
+                    </Route>
+                    <Route path='*'>
+                        <h1>404 not found</h1>
                     </Route>
                 </Switch>
             </header>
