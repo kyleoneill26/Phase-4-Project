@@ -11,16 +11,14 @@ function MoviePage({changeSearch, addMovie, movies}) {
     // const []
 
 	return (
-        // <SearchMovies changeSearch={changeSearch}/>
-        // <div>
-        //     <h2> Movies list</h2>
-        //     <div className="formdiv">
-        //         </>
-        // </div>
-        <div className= "card div">
-            {moviesComponents}
-        </div>
+        <main>
+            <SearchMovies changeSearch={changeSearch}/>
+            <div className= "card div">
+                {moviesComponents}
+            </div>
+        </main>
 
+    
 
 	)
 }

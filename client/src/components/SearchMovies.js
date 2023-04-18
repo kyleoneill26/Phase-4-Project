@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 function SearchMovies({changeSearch}) {
 
     const handleSearch = e => changeSearch(e.target.value)
