@@ -5,11 +5,15 @@ from flask_migrate import Migrate
 from flask_restful import Api, Resource
 from config import app, db, api
 from models import Customer, Movie, Rental, Review
+
+
 class Home(Resource):
     def get(self):
         return make_response("API is running", 200)
 
 api.add_resource(Home, '/')
+
+
 class Customers(Resource):
     def get(self):
         customers = Customer.query.all()
@@ -19,8 +23,6 @@ class Customers(Resource):
         return make_response( customers_dict, 200 )
 
     def post(self):
-
-        ### does there need to be a try block here?
         data = request.get_json()
         new_customer = Customer(
             fname = data['fname'],
@@ -56,7 +58,6 @@ class CustomerById(Resource):
         customer_by_id_dict = customer_by_id.to_dict()
         return make_response( customer_by_id_dict, 201 )
 
-
     def delete(self, id):
         customer_by_id = Customer.query.filter(Customer.id == id).first()
         if customer_by_id is None:
@@ -74,27 +75,95 @@ class Movies(Resource):
         if movies == None:
             return make_response( { 'error' : '404: Movies Not Found' } )
         return make_response( movies_dict, 200 )
+    
+    def post(self):
+        data = request.get_json()
+        new_movie = Movie(
+            title = data['title'],
+            image = data['image'],
+            year = data['year'],
+            rating = data['rating'],
+            in_stock = data['in_stock'],
+        )
+        db.session.add( new_movie )
+        db.session.commit()
+        movie_dict = new_movie.to_dict()
+        return make_response(movie_dict, 200)
+    
 api.add_resource( Movies, '/movies' )
 
-# class MovieById(Resource):
-#     pass
-# api.add_resource( Movies, '/movies/<int:id>' )
+class MovieById(Resource):
+    def get(self, id):
+        movie_by_id = Movie.query.filter(Movie.id == id).first()
+        movie_by_id_dict = movie_by_id.to_dict()
+        if movie_by_id == None:
+            return make_response( { 'error' : '404: Movie Not Found' } )
+        return make_response( movie_by_id_dict, 200 )
+    
+api.add_resource( Movies, '/movies/<int:id>' )
 
-# class Rentals(Resource):
-#     pass
-# api.add_resource( Rentals, '/rentals' )
+class Rentals(Resource):
+    def get(self):
+        rentals = Rental.query.all()
+        rentals_dict = [rental.to_dict() for rental in rentals]
+        if rentals == None:
+            return make_response( { 'error' : '404: Rentals Not Found' } )
+        return make_response( rentals_dict, 200 )
+    
+    def post(self):
+        data = request.get_json()
+        new_rental = Rental(
+            customer_id = data['customer_id'],
+            movie_id = data['movie_id'],
+            rented_date = data['rented_date'],
+            due_date = data['due_date'],
+        )
+        db.session.add( new_rental )
+        db.session.commit()
+        rental_dict = new_rental.to_dict()
+        return make_response(rental_dict, 200)
+    
+api.add_resource( Rentals, '/rentals' )
 
-# class RentalById(Resource):
-#     pass
-# api.add_resource( Rentals, '/rentals/<int:id>' )
+class RentalById(Resource):
+    def get(self, id):
+        rental_by_id = Rental.query.filter(Rental.id == id).first()
+        rental_by_id_dict = rental_by_id.to_dict()
+        if rental_by_id == None:
+            return make_response( { 'error' : '404: Rental Not Found' } )
+        return make_response( rental_by_id_dict, 200 )
+api.add_resource( Rentals, '/rentals/<int:id>' )
 
-# class Reviews(Resource):
-#     pass
-# api.add_resource( Reviews, '/reviews' )
+class Reviews(Resource):
+    def get(self):
+        reviews = Review.query.all()
+        reviews_dict = [review.to_dict() for review in reviews]
+        if reviews == None:
+            return make_response( { 'error' : '404: Reviews Not Found' } )
+        return make_response( reviews_dict, 200 )
+    
+    def post(self):
+        data = request.get_json()
+        new_review = Review(
+            customer_id = data['customer_id'],
+            movie_id = data['movie_id'],
+            review = data['review'],
+        )
+        db.session.add( new_review )
+        db.session.commit()
+        review_dict = new_review.to_dict()
+        return make_response(review_dict, 200)
 
-# class ReviewById(Resource):
-#     pass
-# api.add_resource( Reviews, '/reviews/<int:id>' )
+api.add_resource( Reviews, '/reviews' )
+
+class ReviewById(Resource):
+    def get(self, id):
+        review_by_id = Review.query.filter(Review.id == id).first()
+        review_by_id_dict = review_by_id.to_dict()
+        if review_by_id == None:
+            return make_response( { 'error' : '404: Review Not Found' } )
+        return make_response( review_by_id_dict, 200 )
+api.add_resource( Reviews, '/reviews/<int:id>' )
 
 
 if __name__ == '__main__':
