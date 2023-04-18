@@ -26,6 +26,7 @@ class Movie(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255))
+    image = db.Column(db.String(255))
     genre = db.Column(db.String(255))
     year = db.Column(db.String(100))
     rating = db.Column(db.String(255))
