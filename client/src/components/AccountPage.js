@@ -1,4 +1,5 @@
 import React from 'react'
+<<<<<<< HEAD
 import { NavLink } from'react-router-dom'
 
 function AccountPage({currentUser, setCurrentUser, onLogout}) {
@@ -9,6 +10,32 @@ function AccountPage({currentUser, setCurrentUser, onLogout}) {
         }).then(() => onLogout());
       }
 
+=======
+import AccountEditForm from './AccountEditForm'
+
+function AccountPage() {
+
+
+
+    const customerComponents = customer.map() // TODO
+
+    const [hideCustomerEditForm, setHideCustomerEditForm] = useState(true)
+    const handleHideCustomerEditForm = () => {
+        setHideCustomerEditForm(hideCustomerEditForm => !hideCustomerEditForm)
+    } // FIXME 
+
+    function FormButton({handleHideCustomerEditForm}) {
+        return(
+            <button onClick={handleHideCustomerEditForm} className="hideFormButton">Edit Account Info</button>
+        )
+    }
+
+
+
+
+
+
+>>>>>>> main
     return (
         <div>
             <div>AccountPage</div>
