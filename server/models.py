@@ -19,7 +19,6 @@ class Customer(db.Model, SerializerMixin):
     age = db.Column(db.Integer)
     password = db.Column(db.String(255), nullable=False)
     rentals = db.relationship('Rental', backref='customer')
-    reviews = db.relationship('Review', backref='customer')
     
     @validates('email')
     def validate_email(self, key, email):
