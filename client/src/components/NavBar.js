@@ -9,22 +9,22 @@ import SearchMovies from './SearchMovies';
 
 function NavBar() {
   return (
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="./">Home</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-      <span class="navbar-toggler-icon"></span>
+    <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+  <div className="container-fluid">
+    <a className="navbar-brand" href="./">Home</a>
+    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      <span className="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="mynavbar">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/movies">Movies</a>
+    <div className="collapse navbar-collapse" id="mynavbar">
+      <ul className="navbar-nav me-auto">
+        <li className="nav-item">
+          <a className="nav-link" href="/movies">Movies</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/account">Account</a>
+        <li className="nav-item">
+          <a className="nav-link" href="/account">Account</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/aboutme">About Me</a>
+        <li className="nav-item">
+          <a className="nav-link" href="/aboutme">About Me</a>
         </li>
       </ul>
       

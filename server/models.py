@@ -13,13 +13,19 @@ class Customer(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     fname = db.Column(db.String(255))
     lname = db.Column(db.String(255))
-    email = db.Column(db.String(255))
+    email = db.Column(db.String(255), nullable=False, unique=True)
     phone = db.Column(db.String(255))
     city = db.Column(db.String(255))
     age = db.Column(db.Integer)
-    password = db.Column(db.String(255))
+    password = db.Column(db.String(255), nullable=False)
     rentals = db.relationship('Rental', backref='customer')
     reviews = db.relationship('Review', backref='customer')
+    
+    @validates('email')
+    def validate_email(self, key, email):
+        if email < 1 or rating > 5:
+            raise ValueError("Rating is invalid")
+        return rating
     
 class Movie(db.Model, SerializerMixin):
     __tablename__ = 'movies'

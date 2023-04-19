@@ -2,11 +2,9 @@ import React from "react";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { motion } from "framer-motion";
 import Image from 'react-bootstrap/Image'
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-
 
 function MovieCard({movie}) {
     
