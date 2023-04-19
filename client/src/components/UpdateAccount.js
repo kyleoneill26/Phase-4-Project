@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function CreateAccount() {
+function UpdateAccount({currentUser, onLogout}) {
 
     const [newFirstName, setNewFirstName] = useState('')
     const [newLastName, setNewLastName] = useState('')
@@ -18,10 +18,10 @@ function CreateAccount() {
     const handleAge = e => setNewAge(e.target.value)
     const handlePassword = e => setNewPassword(e.target.value)
 
-	function handleCreateAccountSubmit(e) {
+	function handleUpdateAccountSubmit(e) {
         e.preventDefault();
 
-        const newCustomer = {
+        const updatedCustomer = {
             fname: newFirstName,
             lname: newLastName,
             email: newEmail,
@@ -32,7 +32,7 @@ function CreateAccount() {
         }
 
         const requestOptions = {
-            method: 'POST',
+            method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 fname: newFirstName,
@@ -44,7 +44,7 @@ function CreateAccount() {
                 password: newPassword
             })
         };
-        fetch('/customers', requestOptions)
+        fetch(`/customers/${currentUser.id}`, requestOptions)
             //.then( addCustomerToState )
             .then (e.target.reset())
     }
@@ -54,18 +54,18 @@ function CreateAccount() {
             <br />
             <div>Enter your account information:</div>
             <br />
-            <form onSubmit={handleCreateAccountSubmit}>
-                <input type="text" fname="fname" placeholder="First Name" onChange={handleFirstName} /><br />
+            <form onSubmit={handleUpdateAccountSubmit}>
+                <input type="text" fname="fname" placeholder={currentUser.fname} onChange={handleFirstName} /><br />
                 <input type="text" lname="lname" placeholder="Last Name" onChange={handleLastName} /><br />
                 <input type="text" email="email" placeholder="Email" onChange={handleEmail} /><br />
                 <input type="text" phone="phone" placeholder="Phone" onChange={handlePhone} /><br />
                 <input type="text" city="city" placeholder="City" onChange={handleCity} /><br />
                 <input type="text" city="age" placeholder="Age" onChange={handleAge} /><br />
                 <input type="text" password="password" placeholder="Password" onChange={handlePassword} /><br />
-                <input type="submit" value="Create Account" />
+                <input type="submit" value="Update Account" />
             </form>
         </div>
 	)
 }
 
-export default CreateAccount;
+export default UpdateAccount;

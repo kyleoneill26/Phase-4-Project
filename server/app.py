@@ -1,18 +1,17 @@
 #!/usr/bin/env python3
 
-from flask import Flask, request, make_response
+from flask import Flask, request, make_response, session
 from flask_migrate import Migrate
 from flask_restful import Api, Resource
 from config import app, db, api
 from models import Customer, Movie, Rental, Review
 
-
+app.secret_key = b"\x7f\x7f(\xe8\x0c('\xa8\xa5\x82pb\t\x1d>rZ\x8c^\x7f\xbb\xe2L|"
 class Home(Resource):
     def get(self):
         return make_response("API is running", 200)
 
 api.add_resource(Home, '/')
-
 
 class Customers(Resource):
     def get(self):
@@ -160,13 +159,46 @@ api.add_resource( Reviews, '/reviews' )
 
 class ReviewById(Resource):
     def get(self, id):
+        
         review_by_id = Review.query.filter(Review.id == id).first()
         review_by_id_dict = review_by_id.to_dict()
+        
         if review_by_id == None:
             return make_response( { 'error' : '404: Review Not Found' } )
         return make_response( review_by_id_dict, 200 )
+    
 api.add_resource( ReviewById, '/reviews/<int:id>' )
 
+class CheckSession(Resource):
+
+    def get(self):
+        customer = Customer.query.filter(Customer.id == session.get('user_id')).first()
+        if customer:
+            return customer.to_dict()
+        else:
+            return {'message': '401: Not Authorized'}, 401
+
+api.add_resource(CheckSession, '/check_session')
+
+class Login(Resource):
+
+    def post(self):
+        customer = Customer.query.filter(
+            Customer.email == request.get_json()['email']
+        ).first()
+
+        session['user_id'] = customer.id
+        return customer.to_dict()
+
+api.add_resource(Login, '/login')
+
+class Logout(Resource):
+
+    def delete(self): # just add this line!
+        session['user_id'] = None
+        return {'message': '204: No Content'}, 204
+
+api.add_resource(Logout, '/logout')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
