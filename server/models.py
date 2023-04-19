@@ -8,7 +8,7 @@ from config import db
 class Customer(db.Model, SerializerMixin):
     __tablename__ = 'customers'
     
-    serialize_rules= ('-rentals', '-reviews')
+    serialize_rules= ('-rentals',)
 
     id = db.Column(db.Integer, primary_key=True)
     fname = db.Column(db.String(255))
@@ -19,18 +19,11 @@ class Customer(db.Model, SerializerMixin):
     age = db.Column(db.Integer)
     password = db.Column(db.String(255), nullable=False)
     rentals = db.relationship('Rental', backref='customer')
-    reviews = db.relationship('Review', backref='customer')
-    
-    @validates('email')
-    def validate_email(self, key, email):
-        if email < 1 or rating > 5:
-            raise ValueError("Rating is invalid")
-        return rating
     
 class Movie(db.Model, SerializerMixin):
     __tablename__ = 'movies'
     
-    serialize_rules= ('-rentals', '-reviews')
+    serialize_rules= ('-rentals',)
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255))
@@ -40,7 +33,6 @@ class Movie(db.Model, SerializerMixin):
     rating = db.Column(db.String(255))
     in_stock = db.Column(db.Boolean)
     rentals = db.relationship('Rental', backref='movie')
-    reviews = db.relationship('Review', backref='movie')
 
 class Rental(db.Model, SerializerMixin):
     __tablename__ = 'rentals'
@@ -52,13 +44,3 @@ class Rental(db.Model, SerializerMixin):
     movie_id = db.Column(db.Integer, db.ForeignKey('movies.id'))
     rented_date = db.Column(db.types.DateTime)
     due_date = db.Column(db.types.DateTime)
-    
-class Review(db.Model, SerializerMixin):
-    __tablename__ = 'reviews'
-    
-    serialize_rules= ('-customer.reviews', '-movie.reviews')
-
-    id = db.Column(db.Integer, primary_key=True)
-    customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'))
-    movie_id = db.Column(db.Integer, db.ForeignKey('movies.id'))
-    review = db.Column(db.Integer)

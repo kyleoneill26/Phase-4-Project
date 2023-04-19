@@ -4,7 +4,7 @@ from flask import Flask, request, make_response, session
 from flask_migrate import Migrate
 from flask_restful import Api, Resource
 from config import app, db, api
-from models import Customer, Movie, Rental, Review
+from models import Customer, Movie, Rental
 
 app.secret_key = b"\x7f\x7f(\xe8\x0c('\xa8\xa5\x82pb\t\x1d>rZ\x8c^\x7f\xbb\xe2L|"
 class Home(Resource):
@@ -134,40 +134,6 @@ class RentalById(Resource):
             return make_response( { 'error' : '404: Rental Not Found' } )
         return make_response( rental_by_id_dict, 200 )
 api.add_resource( RentalById, '/rentals/<int:id>' )
-
-class Reviews(Resource):
-    def get(self):
-        reviews = Review.query.all()
-        reviews_dict = [review.to_dict() for review in reviews]
-        if reviews == None:
-            return make_response( { 'error' : '404: Reviews Not Found' } )
-        return make_response( reviews_dict, 200 )
-    
-    def post(self):
-        data = request.get_json()
-        new_review = Review(
-            customer_id = data['customer_id'],
-            movie_id = data['movie_id'],
-            review = data['review'],
-        )
-        db.session.add( new_review )
-        db.session.commit()
-        review_dict = new_review.to_dict()
-        return make_response(review_dict, 200)
-
-api.add_resource( Reviews, '/reviews' )
-
-class ReviewById(Resource):
-    def get(self, id):
-        
-        review_by_id = Review.query.filter(Review.id == id).first()
-        review_by_id_dict = review_by_id.to_dict()
-        
-        if review_by_id == None:
-            return make_response( { 'error' : '404: Review Not Found' } )
-        return make_response( review_by_id_dict, 200 )
-    
-api.add_resource( ReviewById, '/reviews/<int:id>' )
 
 class CheckSession(Resource):
 

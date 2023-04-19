@@ -6,7 +6,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from datetime import date
 from app import app
-from models import db, Customer, Movie, Rental, Review
+from models import db, Customer, Movie, Rental
 
 if __name__ == '__main__':
     with app.app_context():
@@ -20,7 +20,6 @@ if __name__ == '__main__':
         session.query(Customer).delete()
         session.query(Movie).delete()
         session.query(Rental).delete()
-        session.query(Review).delete()
         
         scott_henry = Customer(
         fname="Scott",
@@ -108,27 +107,8 @@ if __name__ == '__main__':
         rented_date=datetime.date.today(),
         due_date=datetime.date.today() + datetime.timedelta(days=2)
         )
-        
-        review1 = Review(
-        customer_id="1",
-        movie_id="1",
-        review="1"
-        )
-        
-        review2 = Review(
-        customer_id="2",
-        movie_id="2",
-        review="2"
-        )
-        
-        review3 = Review(
-        customer_id="3",
-        movie_id="3",
-        review="3"
-        )
-        
-        
-    session.bulk_save_objects([scott_henry, kyle_oneill, jesse_hunter, predator, terminator, top_gun, the_color_of_money, rental1, rental2, rental3, review1, review2, review3])
+
+    session.bulk_save_objects([scott_henry, kyle_oneill, jesse_hunter, predator, terminator, top_gun, the_color_of_money, rental1, rental2, rental3])
     session.commit()
     session.close()
 
