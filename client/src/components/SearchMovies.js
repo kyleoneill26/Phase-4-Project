@@ -21,7 +21,7 @@ function SearchMovies({changeSearch}) {
     className='search-btn'>Search</Button>
 </Form>
     
-           
+
     )
 }
 

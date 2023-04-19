@@ -8,6 +8,7 @@ import AccountPage from "./AccountPage";
 import CreateAccount from "./CreateAccount";
 import UpdateAccount from "./UpdateAccount";
 import LoginPage from "./LoginPage";
+import RentalsPage from "./RentalsPage";
 
 function App() {
 
@@ -152,6 +153,9 @@ function App() {
                     </Route>
                     <Route path='/update_account'>
                         <UpdateAccount className="App-header" currentUser={currentUser} onLogout={onLogout} onDeleteAccount={onDeleteAccount} />
+                    </Route>
+                    <Route path='my_rentals'>
+                        <RentalsPage className="App-header" rentals= {rentals} currentUser={currentUser} onLogout={onLogout} />
                     </Route>
                     <Route path='/'>
                         <Home className="App-header"/>
