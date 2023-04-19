@@ -139,7 +139,7 @@ function App() {
                         <MoviePage changeSearch={changeSearch} addMovie={addMovie} movies={searchedMovies} className="App-header"/>
                     </Route>
                     <Route path='/account'>
-                        <AccountPage className="App-header" currentUser={currentUser} setcurrentUser={setCurrentUser} onLogout={onLogout} />
+                        <AccountPage className="App-header" currentUser={currentUser} onLogout={onLogout} />
                     </Route>
                     <Route path='/aboutme'>
                         <AboutMe className="App-header"/>
