@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 
-function UpdateAccount({currentUser, onLogout}) {
+function UpdateAccount({currentUser, onLogout, onDeleteAccount}) {
 
     const [newFirstName, setNewFirstName] = useState('')
     const [newLastName, setNewLastName] = useState('')
@@ -51,19 +52,32 @@ function UpdateAccount({currentUser, onLogout}) {
     
     return (
         <div>
-            <br />
-            <div>Enter your account information:</div>
-            <br />
-            <form onSubmit={handleUpdateAccountSubmit}>
-                <input type="text" fname="fname" placeholder={currentUser.fname} onChange={handleFirstName} /><br />
-                <input type="text" lname="lname" placeholder="Last Name" onChange={handleLastName} /><br />
-                <input type="text" email="email" placeholder="Email" onChange={handleEmail} /><br />
-                <input type="text" phone="phone" placeholder="Phone" onChange={handlePhone} /><br />
-                <input type="text" city="city" placeholder="City" onChange={handleCity} /><br />
-                <input type="text" city="age" placeholder="Age" onChange={handleAge} /><br />
-                <input type="text" password="password" placeholder="Password" onChange={handlePassword} /><br />
-                <input type="submit" value="Update Account" />
-            </form>
+            { currentUser ? (
+                <div>
+                    <br />
+                    <div>Enter your account information:</div>
+                    <br />
+                    <form onSubmit={handleUpdateAccountSubmit}>
+                        <input type="text" fname="fname" placeholder={currentUser.fname} onChange={handleFirstName} /><br />
+                        <input type="text" lname="lname" placeholder="Last Name" onChange={handleLastName} /><br />
+                        <input type="text" email="email" placeholder="Email" onChange={handleEmail} /><br />
+                        <input type="text" phone="phone" placeholder="Phone" onChange={handlePhone} /><br />
+                        <input type="text" city="city" placeholder="City" onChange={handleCity} /><br />
+                        <input type="text" city="age" placeholder="Age" onChange={handleAge} /><br />
+                        <input type="text" password="password" placeholder="Password" onChange={handlePassword} /><br />
+                        <br />
+                        <input type="submit" value="Update Account" />
+                        <br />
+                        <button onClick={onLogout}>Logout</button>
+                        <br />
+                        <button onClick={onDeleteAccount}>Delete My Account</button>
+                    </form>
+                </div>) : (
+                    <div>
+                        <br />
+                        <div>Please <NavLink className='NavLink' exact to = '/login'>Login</NavLink> to update your account</div>
+                    </div>
+                )}
         </div>
 	)
 }

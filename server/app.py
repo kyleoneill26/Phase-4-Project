@@ -186,15 +186,18 @@ class Login(Resource):
         customer = Customer.query.filter(
             Customer.email == request.get_json()['email']
         ).first()
-
-        session['user_id'] = customer.id
-        return customer.to_dict()
+        
+        if customer.password == request.get_json()['password']:
+            session['user_id'] = customer.id
+            return customer.to_dict()
+        else:
+            return {'message': '401: Not Authorized'}, 401
 
 api.add_resource(Login, '/login')
 
 class Logout(Resource):
 
-    def delete(self): # just add this line!
+    def delete(self):
         session['user_id'] = None
         return {'message': '204: No Content'}, 204
 

@@ -28,6 +28,16 @@ function App() {
         setCurrentUser(user);
     }
 
+    function onDeleteAccount() {
+        const requestOptions = {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({id: currentUser.id})
+        };
+        fetch(`/customers/${currentUser.id}`, requestOptions)
+            .then(setCurrentUser(null))
+    }
+
 ////////////////////////  Fetches //////////
 ////////////////////////  Fetches /////////////////////////////////
 
@@ -135,13 +145,13 @@ function App() {
                         <AboutMe className="App-header"/>
                     </Route>
                     <Route path='/login'>
-                        <LoginPage className="App-header" currentUser={currentUser} setcurrentUser={setCurrentUser} onLogin={onLogin} />
+                        <LoginPage className="App-header" currentUser={currentUser} onLogin={onLogin} onLogout={onLogout} />
                     </Route>
                     <Route path='/register'>
-                        <CreateAccount className="App-header"/>
+                        <CreateAccount className="App-header" currentUser={currentUser} onLogout={onLogout} />
                     </Route>
                     <Route path='/update_account'>
-                        <UpdateAccount className="App-header" currentUser={currentUser} onLogout={onLogout} />
+                        <UpdateAccount className="App-header" currentUser={currentUser} onLogout={onLogout} onDeleteAccount={onDeleteAccount} />
                     </Route>
                     <Route path='/'>
                         <Home className="App-header"/>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function LoginPage({currentUser, setCurrentUser, onLogin}) {
+function LoginPage({currentUser, onLogin, onLogout}) {
 
     const [newEmail, setNewEmail] = useState('')
     const [newPassword, setNewPassword] = useState('')
@@ -27,14 +27,29 @@ function LoginPage({currentUser, setCurrentUser, onLogin}) {
     
     return (
         <div>
-            <br />
-            <div>Enter your login info:</div>
-            <br />
-            <form onSubmit={handleLoginSubmit}>
-                <input type="text" email="email" placeholder="Email" onChange={handleEmail} /><br />
-                <input type="text" password="password" placeholder="Password" onChange={handlePassword} /><br />
-                <input type="submit" value="Login" />
-            </form>
+            { currentUser ? (
+                <div>
+                    <br />
+                    <div>Logged in as:</div>
+                    <div>Name: {currentUser.fname} {currentUser.lname}</div>
+                    <div>Email: {currentUser.email}</div>
+                    <div>Phone: {currentUser.phone}</div>
+                    <div>City: {currentUser.city}</div>
+                    <div>Age: {currentUser.age}</div>
+                    <br />
+                    <button onClick={onLogout}>Logout</button>
+                </div>) : (
+                    <div>
+                        <br />
+                        <div>Enter your login info:</div>
+                        <br />
+                        <form onSubmit={handleLoginSubmit}>
+                            <input type="text" email="email" placeholder="Email" onChange={handleEmail} /><br />
+                            <input type="text" password="password" placeholder="Password" onChange={handlePassword} /><br />
+                            <input type="submit" value="Login" />
+                        </form>
+                    </div>
+                )}
         </div>
 	)
 }
