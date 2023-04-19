@@ -23,9 +23,9 @@ class Customer(db.Model, SerializerMixin):
     
     @validates('email')
     def validate_email(self, key, email):
-        if email < 1 or rating > 5:
-            raise ValueError("Rating is invalid")
-        return rating
+        if email == None:
+            raise ValueError("Must provide an email address")
+        return email
     
 class Movie(db.Model, SerializerMixin):
     __tablename__ = 'movies'
@@ -48,8 +48,8 @@ class Rental(db.Model, SerializerMixin):
     serialize_rules= ('-customer.rentals', '-movie.rentals')
 
     id = db.Column(db.Integer, primary_key=True)
-    customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'))
-    movie_id = db.Column(db.Integer, db.ForeignKey('movies.id'))
+    customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'), nullable=False)
+    movie_id = db.Column(db.Integer, db.ForeignKey('movies.id'), nullable=False)
     rented_date = db.Column(db.types.DateTime)
     due_date = db.Column(db.types.DateTime)
     

@@ -22,20 +22,24 @@ class Customers(Resource):
         return make_response( customers_dict, 200 )
 
     def post(self):
-        data = request.get_json()
-        new_customer = Customer(
-            fname = data['fname'],
-            lname = data['lname'],
-            password = data['password'],
-            age = data['age'],
-            phone = data['phone'],
-            city = data['city'],
-            email = data['email'],
-        )
-        db.session.add( new_customer )
-        db.session.commit()
-        customer_dict = new_customer.to_dict()
-        return make_response(customer_dict, 200)
+        try:
+            data = request.get_json()
+            new_customer = Customer(
+                fname = data['fname'],
+                lname = data['lname'],
+                email = data['email'],
+                phone = data['phone'],
+                city = data['city'],
+                age = data['age'],
+                password = data['password'],
+            )
+            db.session.add( new_customer )
+            db.session.commit()
+            customer_dict = new_customer.to_dict()
+            return make_response(customer_dict, 200)
+        except Exception as e:
+            db.session.rollback()
+            return make_response( { 'error' : str(e) }, 500 )
 
 api.add_resource( Customers, '/customers' )
 
@@ -78,18 +82,22 @@ class Movies(Resource):
         return make_response( movies_dict, 200 )
     
     def post(self):
-        data = request.get_json()
-        new_movie = Movie(
-            title = data['title'],
-            image = data['image'],
-            year = data['year'],
-            rating = data['rating'],
-            in_stock = data['in_stock'],
-        )
-        db.session.add( new_movie )
-        db.session.commit()
-        movie_dict = new_movie.to_dict()
-        return make_response(movie_dict, 200)
+        try:
+            data = request.get_json()
+            new_movie = Movie(
+                title = data['title'],
+                image = data['image'],
+                year = data['year'],
+                rating = data['rating'],
+                in_stock = data['in_stock'],
+            )
+            db.session.add( new_movie )
+            db.session.commit()
+            movie_dict = new_movie.to_dict()
+            return make_response(movie_dict, 200)
+        except Exception as e:
+            db.session.rollback()
+            return make_response( { 'error' : str(e) }, 500 )
     
 api.add_resource( Movies, '/movies' )
 
