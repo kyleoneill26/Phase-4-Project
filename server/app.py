@@ -39,7 +39,7 @@ class Customers(Resource):
             return make_response(customer_dict, 200)
         except Exception as e:
             db.session.rollback()
-            return make_response( { 'error' : str(e) }, 500 )
+            return make_response( { 'Error' : str(e) }, 422 )
 
 api.add_resource( Customers, '/customers' )
 

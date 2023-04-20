@@ -20,10 +20,16 @@ class Customer(db.Model, SerializerMixin):
     password = db.Column(db.String(255), nullable=False)
     rentals = db.relationship('Rental', backref='customer')
     
+    @validates('password')
+    def validate_password(self, key, password):
+        if password == "":
+            raise ValueError("Must provide a password")
+        return password
+    
     @validates('email')
     def validate_email(self, key, email):
-        if email == None:
-            raise ValueError("Must provide an email address")
+        if (email == "") or ('@' not in email) or ('.' not in email):
+            raise ValueError("Must provide a valid email")
         return email
     
 class Movie(db.Model, SerializerMixin):

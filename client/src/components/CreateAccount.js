@@ -68,13 +68,13 @@ function CreateAccount({currentUser, onLogout}) {
                     <div>Enter your account information:</div>
                     <br />
                     <form onSubmit={handleCreateAccountSubmit}>
-                        <input type="text" fname="fname" placeholder="First Name" onChange={handleFirstName} /><br />
-                        <input type="text" lname="lname" placeholder="Last Name" onChange={handleLastName} /><br />
-                        <input type="text" email="email" placeholder="Email" onChange={handleEmail} /><br />
-                        <input type="text" phone="phone" placeholder="Phone" onChange={handlePhone} /><br />
-                        <input type="text" city="city" placeholder="City" onChange={handleCity} /><br />
-                        <input type="text" city="age" placeholder="Age" onChange={handleAge} /><br />
-                        <input type="text" password="password" placeholder="Password" onChange={handlePassword} /><br />
+                        <input type="text" placeholder="First Name" onChange={handleFirstName} /><br />
+                        <input type="text" placeholder="Last Name" onChange={handleLastName} /><br />
+                        <input type="text" placeholder="Email" onChange={handleEmail} /><br />
+                        <input type="text" placeholder="Phone" onChange={handlePhone} /><br />
+                        <input type="text" placeholder="City" onChange={handleCity} /><br />
+                        <input type="text" placeholder="Age" onChange={handleAge} /><br />
+                        <input type="text" placeholder="Password" onChange={handlePassword} /><br />
                         <input type="submit" value="Create Account" />
                     </form>
                 </div>
