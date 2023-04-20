@@ -25,6 +25,10 @@ function App() {
         setCurrentUser(null);
     }
 
+    function onCreateAccount(customer){
+        setCustomers = [...customers, {customer}]
+    }
+
     function onLogin(user) {
         setCurrentUser(user);
     }
@@ -149,7 +153,7 @@ function App() {
                         <LoginPage className="App-header" currentUser={currentUser} onLogin={onLogin} onLogout={onLogout} />
                     </Route>
                     <Route path='/register'>
-                        <CreateAccount className="App-header" currentUser={currentUser} onLogout={onLogout} />
+                        <CreateAccount className="App-header" currentUser={currentUser} onLogout={onLogout} onCreateAccount={onCreateAccount} />
                     </Route>
                     <Route path='/update_account'>
                         <UpdateAccount className="App-header" currentUser={currentUser} onLogout={onLogout} onDeleteAccount={onDeleteAccount} />

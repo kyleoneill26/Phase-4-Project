@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function CreateAccount({currentUser, onLogout}) {
+function CreateAccount({currentUser, onLogout, onCreateAccount}) {
 
     const [newFirstName, setNewFirstName] = useState('')
     const [newLastName, setNewLastName] = useState('')
@@ -45,7 +45,7 @@ function CreateAccount({currentUser, onLogout}) {
             })
         };
         fetch('/customers', requestOptions)
-            //.then( addCustomerToState )
+            .then(onCreateAccount)
             .then (e.target.reset())
     }
     
