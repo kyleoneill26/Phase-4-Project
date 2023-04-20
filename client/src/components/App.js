@@ -155,7 +155,7 @@ function App() {
                         <UpdateAccount className="App-header" currentUser={currentUser} onLogout={onLogout} onDeleteAccount={onDeleteAccount} />
                     </Route>
                     <Route path='my_rentals'>
-                        <RentalsPage className="App-header" rentals= {rentals} currentUser={currentUser} onLogout={onLogout} />
+                        <RentalsPage className="App-header" rentals= {rentals} currentUser={currentUser} onLogout={onLogout} /> // FIXME: do we need current user pushed all the way through?
                     </Route>
                     <Route path='/'>
                         <Home className="App-header"/>
