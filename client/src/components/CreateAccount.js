@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from 'react-router-dom';
 
 function CreateAccount({currentUser, onLogout, onCreateAccount}) {
 
@@ -17,10 +18,11 @@ function CreateAccount({currentUser, onLogout, onCreateAccount}) {
     const handleCity = e => setNewCity(e.target.value)
     const handleAge = e => setNewAge(e.target.value)
     const handlePassword = e => setNewPassword(e.target.value)
+    const history = useHistory();
 
 	function handleCreateAccountSubmit(e) {
         e.preventDefault();
-
+        
         const newCustomer = {
             fname: newFirstName,
             lname: newLastName,
@@ -46,7 +48,7 @@ function CreateAccount({currentUser, onLogout, onCreateAccount}) {
         };
         fetch('/customers', requestOptions)
             .then(onCreateAccount)
-            .then (e.target.reset())
+            .then(history.push('/login'))
     }
     
     return (

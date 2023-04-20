@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Route, NavLink } from "react-router-dom";
+import { Switch, Route, NavLink, useHistory } from "react-router-dom";
 import MoviePage from "./MoviePage";
 import NavBar from "./NavBar";
 import Home from "./Home";
@@ -20,14 +20,15 @@ function App() {
     const [movies, setMovies] = useState([]);
     const [rentals, setRentals] = useState([]);
     const [currentUser, setCurrentUser] = useState(null);
+    const history = useHistory();
 
     function onLogout() {
         setCurrentUser(null);
     }
 
-    function onCreateAccount(customer){
-        setCustomers = [...customers, {customer}]
-    }
+    const onCreateAccount = customerObj => {
+        setCustomers( [ ...customers, customerObj ] )
+      }
 
     function onLogin(user) {
         setCurrentUser(user);
@@ -41,6 +42,7 @@ function App() {
         };
         fetch(`/customers/${currentUser.id}`, requestOptions)
             .then(setCurrentUser(null))
+            .then(history.push('/account'))
     }
 
 ////////////////////////  Fetches //////////
@@ -156,7 +158,7 @@ function App() {
                         <CreateAccount className="App-header" currentUser={currentUser} onLogout={onLogout} onCreateAccount={onCreateAccount} />
                     </Route>
                     <Route path='/update_account'>
-                        <UpdateAccount className="App-header" currentUser={currentUser} onLogout={onLogout} onDeleteAccount={onDeleteAccount} />
+                        <UpdateAccount className="App-header" currentUser={currentUser} setCurrentUser={setCurrentUser} onLogout={onLogout} onDeleteAccount={onDeleteAccount} />
                     </Route>
                     <Route path='my_rentals'>
                         <RentalsPage className="App-header" rentals= {rentals} currentUser={currentUser} onLogout={onLogout} /> // FIXME: do we need current user pushed all the way through?

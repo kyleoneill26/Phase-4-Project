@@ -165,7 +165,7 @@ class Login(Resource):
             Customer.email == request.get_json()['email']
         ).first()
         
-        if customer.password == request.get_json()['password']:
+        if (customer.password == request.get_json()['password']):
             session['user_id'] = customer.id
             return customer.to_dict()
         else:

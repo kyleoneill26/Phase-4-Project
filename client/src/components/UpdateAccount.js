@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
-function UpdateAccount({currentUser, onLogout, onDeleteAccount}) {
+function UpdateAccount({currentUser, setCurrentUser, onLogout, onDeleteAccount}) {
 
     const [newFirstName, setNewFirstName] = useState('')
     const [newLastName, setNewLastName] = useState('')
@@ -18,6 +18,7 @@ function UpdateAccount({currentUser, onLogout, onDeleteAccount}) {
     const handleCity = e => setNewCity(e.target.value)
     const handleAge = e => setNewAge(e.target.value)
     const handlePassword = e => setNewPassword(e.target.value)
+    const history = useHistory();
 
 	function handleUpdateAccountSubmit(e) {
         e.preventDefault();
@@ -46,8 +47,8 @@ function UpdateAccount({currentUser, onLogout, onDeleteAccount}) {
             })
         };
         fetch(`/customers/${currentUser.id}`, requestOptions)
-            //.then( addCustomerToState )
-            .then (e.target.reset())
+            .then(setCurrentUser(updatedCustomer))
+            .then(history.push('/account'))
     }
     
     return (

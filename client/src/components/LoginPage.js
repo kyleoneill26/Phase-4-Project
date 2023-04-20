@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { NavLink, useHistory } from "react-router-dom";
 
 function LoginPage({currentUser, onLogin, onLogout}) {
 
@@ -8,21 +9,38 @@ function LoginPage({currentUser, onLogin, onLogout}) {
     const handleEmail = e => setNewEmail(e.target.value)
     const handlePassword = e => setNewPassword(e.target.value)
 
+    const history = useHistory();
+
+    function handleLoginResult(customer) {
+        console.log(customer);
+        if (customer.hasOwnProperty('id')) {
+            onLogin(customer);
+        } else {
+            history.push('/login');
+        }
+    }
+
 	function handleLoginSubmit(e) {
         e.preventDefault();
 
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                email: newEmail,
-                password: newPassword
-            })
-        };
-        fetch('/login', requestOptions)
-            .then((r) => r.json())
-            .then((customer) => onLogin(customer))
-            .then (e.target.reset())
+        try {
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    email: newEmail,
+                    password: newPassword
+                })
+            };
+            fetch('/login', requestOptions)
+                .then((r) => r.json())
+                .then((customer) => {
+                    handleLoginResult(customer);
+                })
+        } catch (err) {
+            console.log(err);
+        }
+    
     }
     
     return (
