@@ -59,12 +59,12 @@ function UpdateAccount({currentUser, onLogout, onDeleteAccount}) {
                     <br />
                     <form onSubmit={handleUpdateAccountSubmit}>
                         <input type="text" fname="fname" placeholder={currentUser.fname} onChange={handleFirstName} /><br />
-                        <input type="text" lname="lname" placeholder="Last Name" onChange={handleLastName} /><br />
-                        <input type="text" email="email" placeholder="Email" onChange={handleEmail} /><br />
-                        <input type="text" phone="phone" placeholder="Phone" onChange={handlePhone} /><br />
-                        <input type="text" city="city" placeholder="City" onChange={handleCity} /><br />
-                        <input type="text" city="age" placeholder="Age" onChange={handleAge} /><br />
-                        <input type="text" password="password" placeholder="Password" onChange={handlePassword} /><br />
+                        <input type="text" lname="lname" placeholder={currentUser.lname} onChange={handleLastName} /><br />
+                        <input type="text" email="email" placeholder={currentUser.email} onChange={handleEmail} /><br />
+                        <input type="text" phone="phone" placeholder={currentUser.phone} onChange={handlePhone} /><br />
+                        <input type="text" city="city" placeholder={currentUser.city} onChange={handleCity} /><br />
+                        <input type="text" city="age" placeholder={currentUser.age} onChange={handleAge} /><br />
+                        <input type="text" password="password" placeholder={currentUser.password} onChange={handlePassword} /><br />
                         <br />
                         <input type="submit" value="Update Account" />
                         <br />

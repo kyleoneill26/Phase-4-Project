@@ -53,15 +53,19 @@ class CustomerById(Resource):
         return make_response( customer_by_id_dict, 200 )
 
     def patch(self, id):
-        customer_by_id = Customer.query.filter(Customer.id == id).first()
-        if customer_by_id == None:
-            return make_response( { 'error' : '404: Customer Not Found' } )
-        for attr in request.get_json():
-            setattr(customer_by_id, attr, request.get_json()[attr])
-        db.session.add(customer_by_id)
-        db.session.commit()
-        customer_by_id_dict = customer_by_id.to_dict()
-        return make_response( customer_by_id_dict, 201 )
+        try:
+            customer_by_id = Customer.query.filter(Customer.id == id).first()
+            if customer_by_id == None:
+                return make_response( { 'error' : '404: Customer Not Found' } )
+            for attr in request.get_json():
+                setattr(customer_by_id, attr, request.get_json()[attr])
+            db.session.add(customer_by_id)
+            db.session.commit()
+            customer_by_id_dict = customer_by_id.to_dict()
+            return make_response( customer_by_id_dict, 201 )
+        except Exception as e:
+            db.session.rollback()
+            return make_response( { 'Error' : str(e) }, 422 )
 
     def delete(self, id):
         customer_by_id = Customer.query.filter(Customer.id == id).first()

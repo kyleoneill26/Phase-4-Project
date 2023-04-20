@@ -17,6 +17,13 @@ function AccountPage({currentUser, onLogout}) {
             
             { currentUser ? (
                 <div>
+                    <div>Logged in as:</div>
+                    <div>Name: {currentUser.fname} {currentUser.lname}</div>
+                    <div>Email: {currentUser.email}</div>
+                    <div>Phone: {currentUser.phone}</div>
+                    <div>City: {currentUser.city}</div>
+                    <div>Age: {currentUser.age}</div>
+                    <br />
                     <NavLink className='NavLink' exact to = '/update_account'>Update My Account</NavLink>
                     <br />
                     <button onClick={handleLogout}>Logout</button>
