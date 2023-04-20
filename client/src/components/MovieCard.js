@@ -8,7 +8,7 @@ import Row from 'react-bootstrap/Row';
 
 function MovieCard({movie}) {
     
-   
+
 
     
       return (
@@ -35,7 +35,7 @@ function MovieCard({movie}) {
                         width={"100%"}
                         height={350}
                         alt="movie"
-                       
+                      
                         style={{ objectFit: "fill" }}
                         />
                         <Card.Title
@@ -49,7 +49,7 @@ function MovieCard({movie}) {
                 
               </Card.Body>
             </Card>
-           
+          
         </>
       );
     }
