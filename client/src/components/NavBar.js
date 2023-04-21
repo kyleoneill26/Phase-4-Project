@@ -23,14 +23,7 @@ function NavBar() {
         <li className="nav-item">
           <a className="nav-link" href="/account">Account</a>
         </li>
-        <li className="nav-item">
-          <a className="nav-link" href="/aboutme">About Me</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="/my_rentals">My Rentals</a>
-          </li>
-      </ul>
-      
+      </ul>     
     </div>
   </div>
 </nav>

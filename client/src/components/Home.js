@@ -15,7 +15,6 @@ function Home() {
           alt="First slide"
         />
         <Carousel.Caption>
-          <h3>First slide label</h3>
           <p></p>
         </Carousel.Caption>
       </Carousel.Item>
@@ -27,7 +26,6 @@ function Home() {
           alt="Second slide"
         />
         <Carousel.Caption>
-          <h3>Second slide label</h3>
           <p></p>
         </Carousel.Caption>
       </Carousel.Item>
@@ -39,7 +37,6 @@ function Home() {
           alt="Third slide"
         />
         <Carousel.Caption>
-          <h3>Third slide label</h3>
           <p>
             
           </p>
