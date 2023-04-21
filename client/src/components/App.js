@@ -29,7 +29,7 @@ function App() {
 
     const onCreateAccount = customerObj => {
         setCustomers( [ ...customers, customerObj ] )
-      }
+    }
 
     function onLogin(user) {
         setCurrentUser(user);

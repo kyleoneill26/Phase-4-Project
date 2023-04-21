@@ -34,17 +34,6 @@ function RentalCard({rental, movie}) {
     </div>
       
   );
-        
-
-
-
-
-
-
-
-    return (
-        <div>RentalCard</div>
-    )
 }
 
 export default RentalCard

@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 
 
-function AddMovieForm({AddMovie, handleHideMovieForm}) {
+function AddMovieForm({addMovie, handleHideMovieForm}) {
 
     const [title, setTitle] = useState('')
     const [image, setImage] = useState('')
@@ -31,7 +31,7 @@ function AddMovieForm({AddMovie, handleHideMovieForm}) {
             in_stock: in_stock,
         }
 
-        AddMovie(newMovie)
+        addMovie(newMovie)
 
         fetch('http://localhost:5555/movies', {
             method: 'POST',
@@ -44,6 +44,7 @@ function AddMovieForm({AddMovie, handleHideMovieForm}) {
         setGenre('')
         setYear('')
         setRating('')
+        setIn_stock('')
 
         handleHideMovieForm()
     }
