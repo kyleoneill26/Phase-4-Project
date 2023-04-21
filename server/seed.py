@@ -24,7 +24,7 @@ if __name__ == '__main__':
         scott_henry = Customer(
         fname="Scott",
         lname="Henry",
-        password="gottem",
+        password="password",
         age="44",
         phone="5132279750",
         city="Maplewood",
