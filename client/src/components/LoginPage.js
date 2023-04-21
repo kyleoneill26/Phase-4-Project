@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
+import { Form, InputGroup, Row, Button } from 'react-bootstrap';
 
 function LoginPage({currentUser, onLogin, onLogout}) {
 
@@ -11,8 +12,13 @@ function LoginPage({currentUser, onLogin, onLogout}) {
 
     const history = useHistory();
 
+    function handleLogout() {
+        fetch("/logout", {
+            method: "DELETE",
+        }).then(() => onLogout());
+    }
+    
     function handleLoginResult(customer) {
-        console.log(customer);
         if (customer.hasOwnProperty('id')) {
             onLogin(customer);
         } else {
@@ -48,24 +54,39 @@ function LoginPage({currentUser, onLogin, onLogout}) {
             { currentUser ? (
                 <div>
                     <br />
-                    <div>Logged in as:</div>
+                    <div><h2>Logged in as:</h2></div>
                     <div>Name: {currentUser.fname} {currentUser.lname}</div>
                     <div>Email: {currentUser.email}</div>
                     <div>Phone: {currentUser.phone}</div>
                     <div>City: {currentUser.city}</div>
                     <div>Age: {currentUser.age}</div>
                     <br />
-                    <button onClick={onLogout}>Logout</button>
+                    <NavLink className='NavLink' exact to = '/account'>My Account</NavLink>
+                    <br />
+                    <NavLink className='NavLink' exact to = '/update_account'>Update My Account</NavLink>
+                    <br />
+                    <button onClick={handleLogout} className="me-4 btn btn-danger btn-md btn-block">Logout</button>
                 </div>) : (
                     <div>
                         <br />
-                        <div>Enter your login info:</div>
-                        <br />
-                        <form onSubmit={handleLoginSubmit}>
-                            <input type="text" email="email" placeholder="Email" onChange={handleEmail} /><br />
-                            <input type="text" password="password" placeholder="Password" onChange={handlePassword} /><br />
-                            <input type="submit" value="Login" />
-                        </form>
+                        <div className="container mt-3 mb-3"><h1>Enter your login info:</h1></div>
+                        <form className="container mt-3 mb-3" onSubmit={handleLoginSubmit}>
+                        <Row className="mb-3">
+                        <Form.Group controlId="formGridEmail" className="col col-sm-3">
+                                <Form.Label>Email Address</Form.Label>
+                                <Form.Control className="form-control" type="text" name="email" placeholder="Email Address" onChange={handleEmail} />
+                            </Form.Group>
+                            <Form.Group controlId="formGridPassword" className="col col-sm-3">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control className="form-control" type="text" name="password" placeholder="Password" onChange={handlePassword} />
+                            </Form.Group>
+                        </Row>
+                        <Row className="mb-3">
+                            <Form.Group controlId="formGridSubmit" className="col col-sm-3">
+                                <input type="submit" value="login" className="me-4 btn btn-success btn-md btn-block" />
+                            </Form.Group>
+                        </Row>
+                    </form>
                     </div>
                 )}
         </div>

@@ -24,6 +24,7 @@ function App() {
 
     function onLogout() {
         setCurrentUser(null);
+        history.push('/')
     }
 
     const onCreateAccount = customerObj => {
@@ -32,6 +33,7 @@ function App() {
 
     function onLogin(user) {
         setCurrentUser(user);
+        history.push('/account')
     }
 
     function onDeleteAccount() {
@@ -42,7 +44,7 @@ function App() {
         };
         fetch(`/customers/${currentUser.id}`, requestOptions)
             .then(setCurrentUser(null))
-            .then(history.push('/account'))
+            .then(history.push('/'))
     }
 
 ////////////////////////  Fetches //////////

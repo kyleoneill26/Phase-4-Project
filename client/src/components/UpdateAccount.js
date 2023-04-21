@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
+import { Form, InputGroup, Row, Button } from 'react-bootstrap';
 
 function UpdateAccount({currentUser, setCurrentUser, onLogout, onDeleteAccount}) {
 
@@ -50,29 +51,67 @@ function UpdateAccount({currentUser, setCurrentUser, onLogout, onDeleteAccount})
             .then(setCurrentUser(updatedCustomer))
             .then(history.push('/account'))
     }
-    
+
+    function handleLogout() {
+        fetch("/logout", {
+            method: "DELETE",
+        }).then(() => onLogout());
+    }
+
     return (
         <div>
             { currentUser ? (
                 <div>
-                    <br />
-                    <div>Enter your account information:</div>
-                    <br />
-                    <form onSubmit={handleUpdateAccountSubmit}>
-                        <input type="text" fname="fname" placeholder={currentUser.fname} onChange={handleFirstName} /><br />
-                        <input type="text" lname="lname" placeholder={currentUser.lname} onChange={handleLastName} /><br />
-                        <input type="text" email="email" placeholder={currentUser.email} onChange={handleEmail} /><br />
-                        <input type="text" phone="phone" placeholder={currentUser.phone} onChange={handlePhone} /><br />
-                        <input type="text" city="city" placeholder={currentUser.city} onChange={handleCity} /><br />
-                        <input type="text" city="age" placeholder={currentUser.age} onChange={handleAge} /><br />
-                        <input type="text" password="password" placeholder={currentUser.password} onChange={handlePassword} /><br />
-                        <br />
-                        <input type="submit" value="Update Account" />
-                        <br />
-                        <button onClick={onLogout}>Logout</button>
-                        <br />
-                        <button onClick={onDeleteAccount}>Delete My Account</button>
+                    <div className="container mt-3 mb-3"><h1>Update your account information:</h1></div>
+                    <form className="container mt-3 mb-3" onSubmit={handleUpdateAccountSubmit}>
+                        <Row className="mb-3">
+                            <Form.Group controlId="formGridText" className="col col-sm-3">
+                                <Form.Label>First Name</Form.Label>
+                                <Form.Control className="form-control"type="name" name="fname" placeholder="First Name" onChange={handleFirstName} />
+                            </Form.Group>
+                            <Form.Group controlId="formGridText" className="col col-sm-3">
+                                <Form.Label>Last Name</Form.Label>
+                                <Form.Control className="form-control" type="name" name="lname" placeholder="Last Name" onChange={handleLastName} />
+                            </Form.Group>
+                        </Row>
+                        <Row className="mb-3">
+                            <Form.Group controlId="formGridPhone" className="col col-sm-3">
+                                <Form.Label>Phone Number</Form.Label>
+                                <Form.Control className="form-control" type="text" name="phone" placeholder="Phone Number" onChange={handlePhone} />
+                            </Form.Group>
+                            <Form.Group controlId="formGridEmail" className="col col-sm-3">
+                                <Form.Label>Email Address</Form.Label>
+                                <Form.Control className="form-control" type="text" name="email" placeholder="Email Address" onChange={handleEmail} />
+                            </Form.Group>
+                        </Row>
+                        <Row className="mb-3">
+                            <Form.Group controlId="formGridCity" className="col col-sm-3">
+                                <Form.Label>City</Form.Label>
+                                <Form.Control className="form-control" type="text" name="city" placeholder="City" onChange={handleCity} />
+                            </Form.Group>
+                            <Form.Group controlId="formGridAge" className="col col-sm-3">
+                                <Form.Label>Age</Form.Label>
+                                <Form.Control className="form-control" type="text" name="age" placeholder="Age" onChange={handleAge} />
+                            </Form.Group>
+                        </Row>
+                        <Row className="mb-3">
+                            <Form.Group controlId="formGridPassword" className="col col-sm-3">
+                                <Form.Label>New Password</Form.Label>
+                                <Form.Control className="form-control" type="text" name="password" placeholder="New Password" onChange={handlePassword} />
+                            </Form.Group>
+                            <Form.Group controlId="formGridConfirmPassword" className="col col-sm-3">
+                                <Form.Label>Confirm Password</Form.Label>
+                                <Form.Control className="form-control" type="text" name="confirmpassword" placeholder="Confirm Password" />
+                            </Form.Group>
+                        </Row>
+                        <Row className="mb-3">
+                            <Form.Group controlId="formGridSubmit" className="col col-sm-3">
+                                <input type="submit" value="Update Account" className="me-4 btn btn-success btn-md btn-block" />
+                            </Form.Group>
+                        </Row>
                     </form>
+                    <div className="container mt-2 mb-2"><button onClick={handleLogout} className="me-4 btn btn-danger btn-md btn-block">Logout</button></div>
+                    <div className="container mt-2 mb-2"><button onClick={onDeleteAccount} className="me-4 btn btn-danger btn-md btn-block">Delete My Account</button></div>
                 </div>) : (
                     <div>
                         <br />
