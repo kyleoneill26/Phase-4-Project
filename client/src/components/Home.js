@@ -4,6 +4,8 @@ import Carousel from 'react-bootstrap/Carousel';
 
 function Home() {
   return (
+    <div>
+      <h7>GitBuster</h7>
     <Carousel>
       <Carousel.Item interval={1000}>
         <img
@@ -44,9 +46,12 @@ function Home() {
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
-    
+    </div>
+
   );
-  
+ 
+
 }
+
 
 export default Home;

@@ -22,7 +22,7 @@ function MoviePage({changeSearch, addMovie, movies}) {
 
 
 	return (
-        <main>
+        <main >
             <SearchMovies changeSearch={changeSearch}/>
             <div className="formdiv">
                 {hideMovieForm ? <FormButton handleHideMovieForm={handleHideMovieForm} className="hideFormButton" /> : <AddMovieForm addMovie={addMovie} handleHideMovieForm={handleHideMovieForm}/> }

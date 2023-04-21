@@ -1,8 +1,32 @@
 import React from 'react'
 
-function AboutMe() {
+import { Container, Row, Col } from 'react-bootstrap'
+
+
+function AboutMe(currentUser) {
     return (
-        <div>AboutMe</div>
+        <div className='aboutpagebackground'>
+            <Container>
+                <Row className='textbackground'>
+                    <Col md={7} >
+                        <h3 className='aboutmetext'>About <span>{currentUser.fname}</span></h3>
+                      
+                            <Row>
+                              
+                                <Col md={7}>
+                            
+                
+                                </Col>
+                               
+                            </Row>
+                       
+                    </Col>
+                    <Col md={5}>
+                        
+                    </Col>
+                </Row>
+            </Container>
+        </div>
     )
 }
 
